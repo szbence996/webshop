@@ -1,0 +1,52 @@
+<div class="sidenav" [ngClass]="{
+    'sidenav-collapsed': collapsed,
+    'sidenav-closed-mobile': closed,
+    'sidenav-opened-mobile': opened
+}">
+    <div *ngIf="screenwidth <= 700" class="logo-container">
+        <button class="logo" @fadeInOut *ngIf="!closed || opened" (click)="toggleOpen()"><i class="fa fa-bars"
+                aria-hidden="true"></i></button>
+        <div class="logo-text" @fadeInOut *ngIf="opened">Webshop</div>
+        <button class="btn-close" @rotate @fadeInOut *ngIf="opened" (click)="toggleOpen()">
+            <i class="fal fa-times close-icon"></i>
+        </button>
+    </div>
+    <div *ngIf="screenwidth > 700" class="logo-container">
+        <button class="logo" @fadeInOut *ngIf="!closed || collapsed" (click)="toggleCollapse()"><i class="fa fa-bars"
+                aria-hidden="true"></i></button>
+        <div class="logo-text" @fadeInOut *ngIf="collapsed">Webshop</div>
+        <button class="btn-close" @rotate @fadeInOut *ngIf="collapsed" (click)="toggleCollapse()">
+            <i class="fal fa-times close-icon"></i>
+        </button>
+    </div>
+    <ul *ngIf="screenwidth < 700" class="sidenav-nav-mobile" [style.padding]="opened ? '0.938rem' : '0'">
+        <li class="sidenav-nav-item-mobile" @fadeInOut *ngFor="let data of navData">
+            <a href="" class="sidenav-nav-link-mobile" [routerLink]="[data.routerLink]" routerLinkActive="mobile-active"
+                @fadeInOut *ngIf="(!closed || opened)" (click)="toggleOpen()" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon" @fadeInOut *ngIf="!closed || opened" [class]="data.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed || opened">
+                    {{data.label}}
+                </span>
+                <mat-icon matBadge="{{ data.badge }}" aria-hidden="false" @fadeInOut *ngIf="!closed || opened"
+                    class="cart-badge" matBadgeColor="warn" [matBadgeHidden]="!data.badge" matBadgeOverlap="false">
+                </mat-icon>
+            </a>
+        </li>
+    </ul>
+    <ul *ngIf="screenwidth >= 700" class="sidenav-nav">
+        <li class="sidenav-nav-item" @fadeInOut *ngFor="let data of navData">
+            <a href="" class="sidenav-nav-link" [routerLink]="[data.routerLink]" routerLinkActive="active" @fadeInOut
+                *ngIf="(!closed || opened)" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon" @fadeInOut *ngIf="!closed || opened" [class]="data.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed || opened">
+                    {{data.label}}
+                </span>
+                <mat-icon matBadge="{{ data.badge }}" @fadeInOut *ngIf="!closed || opened" class="cart-badge"
+                    matBadgeColor="warn" [matBadgeHidden]="!data.badge" matBadgeOverlap="false">
+                </mat-icon>
+            </a>
+        </li>
+    </ul>
+</div>
+<i [style.display]="contentLoaded ? 'block' : 'none'" class="sidenav-link-open fa fa-angle-double-right"
+    (click)="toggleOpen()"></i>
