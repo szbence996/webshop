@@ -1,0 +1,57 @@
+<ngx-skeleton-loader *ngIf="!contentLoaded" appearance="line" [theme]="{ width: '100%', height: '50px' }">
+</ngx-skeleton-loader>
+<ngx-skeleton-loader class="mid screen-width" *ngIf="!contentLoaded" appearance="circle" [theme]="{
+  'max-width': '500px',
+  'height': '500px',
+  width: '90vw',
+  'border-radius': '15px',
+}"></ngx-skeleton-loader>
+<div class="contentloaded" [style.display]="contentLoaded ? 'block' : 'none'">
+  <app-user-header></app-user-header>
+  <div class="form-container mat-elevation-z5 text-center" *ngIf="user$ | async as user">
+    <h1 class="profile-header">Személyes adatok</h1>
+    <form class="margin-top" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Vezetéknév</mat-label>
+          <input type="text" matInput formControlName="firstName" maxlength="14" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Keresztnév</mat-label>
+          <input type="text" matInput formControlName="lastName" maxlength="14" />
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>Profilnév</mat-label>
+        <input type="text" matInput formControlName="displayName" maxlength="14" />
+      </mat-form-field>
+      <div class="row-sec">
+        <div class="row-in">
+          <mat-form-field>
+            <mat-label>Hívóazonosító</mat-label>
+            <div class="scrollable-container">
+              <mat-select matNativeControl formControlName="callingCode">
+                <mat-option *ngFor="let code of callingCodes" [value]="code"
+                  [ngClass]="{'bold-text': callingCodeService.first}">{{ code }}
+                </mat-option>
+              </mat-select>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="row-out">
+          <mat-form-field>
+            <mat-label>Telefonszám</mat-label>
+            <input type="number" matInput formControlName="phone" (input)="limitDigits($event)">
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field>
+        <mat-label>Szállítási cím</mat-label>
+        <input type="text" matInput formControlName="address" />
+      </mat-form-field>
+      <button type="submit" class="save-button margin-top">
+        Mentés
+      </button>
+    </form>
+  </div>
+</div>

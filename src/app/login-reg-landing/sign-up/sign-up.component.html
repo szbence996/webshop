@@ -1,0 +1,100 @@
+<div class="form-container">
+  <p class="title">Hozza létre fiókját!</p>
+  <form class="reg-form" [formGroup]="signUpForm" (ngSubmit)="submit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Vezetéknév</mat-label>
+        <input maxlength="14" matInput formControlName="lastName" />
+        <mat-error *ngIf="lastName?.errors?.['required']">
+          Adja meg a vezetéknevét!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Keresztnév</mat-label>
+        <input maxlength="14" matInput formControlName="firstName" />
+        <mat-error *ngIf="firstName?.errors?.['required']">
+          Adja meg a Keresztnevét!
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <mat-form-field>
+      <mat-label>E-mail cím</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['email']">
+        Kérem, valódi E-mail címet használjon!
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['required']">
+        Adja meg az E-mail címét!
+      </mat-error>
+    </mat-form-field>
+
+    <div class="row-sec">
+      <div class="row-in">
+        <mat-form-field>
+          <mat-label>Hívóazonosító</mat-label>
+          <div class="scrollable-container">
+            <mat-select matNativeControl formControlName="callingCode">
+              <mat-option *ngFor="let code of callingCodes" [value]="code"
+                [ngClass]="{'bold-text': callingCodeService.first}">{{ code }}
+              </mat-option>
+            </mat-select>
+          </div>
+          <mat-error *ngIf="callingCode?.errors?.['required']">
+            Válasszon!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row-out">
+        <mat-form-field>
+          <mat-label>Telefonszám</mat-label>
+          <input type="number" matInput formControlName="phone" (input)="limitDigits($event)" />
+          <mat-error *ngIf="phone?.errors?.['required']">
+            Adja meg a telefonszámát!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field>
+      <mat-label>Szállítási cím</mat-label>
+      <input maxlength="50" matInput formControlName="address" />
+      <mat-error *ngIf="address?.errors?.['required']">
+        Adja meg a Szállítási címét!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó </mat-label>
+      <input maxlength="16" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <div class="pw-hide" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon> {{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
+      </div>
+      <mat-error *ngIf="password?.errors?.['required']">
+        Adjon meg egy erős jelszót!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó újra</mat-label>
+      <input maxlength="16" matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword">
+      <mat-error *ngIf="confirmPassword?.errors?.['required']">
+        Adja meg mégegyszer!
+      </mat-error>
+    </mat-form-field>
+    <mat-error class="pw-must-match" *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+      A jelszónak egyeznie kell!
+    </mat-error>
+    <div class="checkbox-with-text">
+      <mat-checkbox (click)="termsCheck($event)"></mat-checkbox>
+      <span>
+        Elfogadom az <span class="terms">ÁSZF</span>-et
+      </span>
+    </div>
+    <div class="login-container">Már rendelkezik fiókkal? <div class="login" routerLink="/user/login/">Jelentkezzen be!
+      </div>
+    </div>
+    <div class="center margin-top">
+      <button type="submit" class="form-btn" [disabled]="termsChecked == false">Regisztráció!</button>
+    </div>
+  </form>
+</div>

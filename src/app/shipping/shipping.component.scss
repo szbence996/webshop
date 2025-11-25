@@ -1,0 +1,136 @@
+.shipping-container {
+    display: block;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 25px;
+    padding: 48px;
+    background-color: #ffffff;
+    border-radius: 16px;
+
+    mat-form-field {
+        width: 100%;
+        margin-top: 8px;
+
+    }
+
+    .title {
+        text-align: center;
+        margin: 10px 0 30px 0;
+        font-size: 22px;
+        font-weight: 800;
+        color: #061e29;
+        line-height: normal;
+        border-bottom: 1px solid #747474;
+        padding-bottom: 15px;
+    }
+}
+
+.checkbox-with-text {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    mat-checkbox {
+        margin-top: 0px;
+        white-space: nowrap;
+        position: relative;
+
+        .terms {
+            display: inline-block;
+            color: #1C202B;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+.row-sec {
+    display: flex;
+    gap: 5px;
+
+    .row-in {
+        display: flex;
+        width: 50%;
+        gap: 5px;
+    }
+
+    .row-out {
+        display: flex;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:650px) {}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.margin-top {
+    margin-top: 16px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.button-container {
+    margin-top: 25px;
+
+    .price {
+        font-size: 18px;
+        font-weight: 100;
+        margin: 20px 0 20px 0;
+        border-bottom: 1px solid #1C202B;
+        width: 100%;
+        text-align: end;
+        padding: 0px 0px 15px 0px;
+    }
+
+    .order-btn {
+        width: 200px;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: #1C202B;
+        color: white;
+        cursor: pointer;
+        margin-left: calc(100% - 200px);
+        height: 55px;
+        text-align: center;
+        border-radius: 0.625rem;
+        transition: all 0.5s ease;
+
+        &:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    }
+
+    .order-btn:hover {
+        color: #eceff1;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .shipping-container {
+        padding: 5px;
+    }
+
+    .row {
+        display: block;
+    }
+
+    .row-sec {
+        display: block;
+        gap: 5px;
+
+        .row-in {
+            width: 100%;
+        }
+
+        .row-out {
+            width: 100%;
+        }
+    }
+}

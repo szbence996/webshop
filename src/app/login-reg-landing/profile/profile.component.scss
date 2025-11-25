@@ -1,0 +1,99 @@
+.profile-image>img {
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 .25rem .5rem #000000;
+
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.625rem;
+    width: 650px;
+    padding: 30px;
+    background-color: white;
+
+    .profile-header {
+        border-bottom: 1px solid #1C202B;
+        padding-bottom: 15px;
+        width: 100%;
+        color: #1C202B;
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .form-container {
+
+        width: 100%;
+        padding: 10px;
+
+        .row {
+            display: block;
+        }
+    }
+
+
+}
+
+.profile-image {
+    position: relative;
+
+}
+
+.profile-image>button {
+    position: absolute;
+    bottom: 10px;
+    right: 35%;
+}
+
+.form-container {
+    max-width: 600px;
+    margin-top: 25px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+
+}
+
+.row-sec {
+    display: flex;
+    gap: 10px;
+
+    .row-in {
+        display: flex;
+        width: 50%;
+    }
+
+    .row-out {
+        display: flex;
+        width: 50%;
+    }
+}
+
+.save-button {
+    padding: 10px 15px;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    border-radius: 0.625rem;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #1C202B;
+    color: white;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.2s ease-in-out;
+}
+
+.save-button:hover {
+    background: #1C202B;
+}
+
+.test {
+    background: yellow;
+}

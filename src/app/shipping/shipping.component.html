@@ -1,0 +1,87 @@
+<ngx-skeleton-loader class="mid screen-width" *ngIf="!contentLoaded" appearance="circle" [theme]="{
+    'max-width': '550px',
+    'height': '550px',
+    width: '90vw',
+    'border-radius': '15px',
+}"></ngx-skeleton-loader>
+
+<div class="shopping-cart-component">
+    <div class="shipping-container mat-elevation-z5" [style.display]="contentLoaded ? 'block' : 'none'">
+        <p class="title">Kérem, adja meg a szállítási adatait!</p>
+        <form #rendelesForm="ngForm" [formGroup]="shippingForm" (ngSubmit)="rendelesFormSubmit(rendelesForm.value)">
+            <div class="row">
+                <mat-form-field *ngIf="!(user$ | async)">
+                    <mat-label>Vezetéknév</mat-label>
+                    <input type="text" matInput formControlName="lastName" maxlength="14" />
+                    <mat-error *ngIf="lastName?.errors?.['required']">
+                        Adja meg a vezetéknevét!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="!(user$ | async)">
+                    <mat-label>Keresztnév</mat-label>
+                    <input type="text" matInput formControlName="firstName" maxlength="14" />
+                    <mat-error *ngIf="firstName?.errors?.['required']">
+                        Adja meg a Keresztnevét!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <mat-form-field *ngIf="!(user$ | async)">
+                <mat-label>E-mail cím</mat-label>
+                <input type="email" matInput formControlName="email" />
+                <mat-error *ngIf="email?.errors?.['email']">
+                    Kérem, valódi E-mail címet használjon!
+                </mat-error>
+                <mat-error *ngIf="email?.errors?.['required']">
+                    Adja meg az E-mail címét!
+                </mat-error>
+            </mat-form-field>
+            <div class="row-sec">
+                <div class="row-in">
+                    <mat-form-field>
+                        <mat-label>Hívóazonosító</mat-label>
+                        <div class="scrollable-container">
+                            <mat-select matNativeControl formControlName="callingCode">
+                                <mat-option *ngFor="let code of callingCodes" [value]="code"
+                                    [ngClass]="{'bold-text': callingCodeService.first}">{{ code }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <mat-error *ngIf="callingCode?.errors?.['required']">
+                            Válasszon!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row-out">
+                    <mat-form-field>
+                        <mat-label>Telefonszám</mat-label>
+                        <input type="number" matInput formControlName="phone" />
+                        <mat-error *ngIf="phone?.errors?.['required']">
+                            Adja meg a telefonszámát!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-form-field>
+                <mat-label>Szallítási cím</mat-label>
+                <input type="text" matInput formControlName="address" maxlength="50" />
+                <mat-error *ngIf="address?.errors?.['required']">
+                    Adja meg a Szállítási címét!
+                </mat-error>
+            </mat-form-field>
+            <!-- <mat-checkbox *ngIf="!(user$ | async)" (click)="termsCheck($event)">Elfogadom az <div class="terms">ÁSZF
+            </div>-et
+        </mat-checkbox> -->
+            <div *ngIf="!(user$ | async)" class="checkbox-with-text">
+                <mat-checkbox (click)="termsCheck($event)"></mat-checkbox>
+                <span>
+                    Elfogadom az <span class="terms">ÁSZF</span>-et
+                </span>
+            </div>
+            <div class="button-container">
+                <p class="price">Végösszeg: {{price}} Ft</p>
+                <button class="order-btn" [disabled]="termsChecked == false && !(user$ | async)" type="submit">Rendelés
+                    megerősítése</button>
+            </div>
+        </form>
+    </div>
+</div>

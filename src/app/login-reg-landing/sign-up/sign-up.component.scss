@@ -1,0 +1,171 @@
+.form-container {
+    height: auto;
+    width: 100%; // Alapértelmezett szélesség
+    max-width: 800px;
+    position: relative;
+}
+
+
+.title {
+    border-bottom: 1px solid #747474;
+    padding-bottom: 15px;
+}
+
+.checkbox-with-text {
+    display: flex;
+    align-items: center;
+
+    mat-checkbox {
+        margin-top: 0px;
+        white-space: nowrap;
+        position: relative;
+
+        .terms {
+            display: inline-block;
+            color: #1C202B;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+.pw-must-match {
+    position: absolute;
+    font-size: 12px;
+    margin-left: 14px;
+    bottom: 19%;
+
+}
+
+.row-sec {
+    display: flex;
+    gap: 5px;
+
+    .row-in {
+        display: flex;
+        width: 50%;
+        gap: 5px;
+    }
+
+    .row-out {
+        display: flex;
+        width: 50%;
+    }
+}
+
+.reg-form {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+mat-form-field {
+    color: #1C202B;
+
+    mat-label {
+        color: #1C202B;
+        font-size: 15px;
+    }
+
+    .pw-hide {
+        cursor: pointer;
+    }
+}
+
+.form-btn {
+    width: 60%;
+    transition: 0.3s ease-in-out;
+}
+
+.login-container {
+    display: flex;
+    font-size: 10px;
+    color: #747474;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+    .login {
+        cursor: pointer;
+        color: #1C202B;
+        margin-left: 5px;
+        font-size: 11px;
+        text-decoration: underline;
+        text-decoration-color: #1C202B;
+        cursor: pointer;
+        font-weight: 800;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+}
+
+.form-btn:disabled {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #989898;
+    color: white;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+    transition: 0.3s ease-in-out;
+}
+
+@media screen and (max-width:650px) {
+    .form-container {
+
+        .row {
+            display: block;
+        }
+
+        .row-sec {
+            display: block;
+
+            .row-in {
+                width: 100%;
+            }
+
+            .row-out {
+                width: 100%;
+            }
+        }
+
+        .title {
+            margin: 10px 0 20px 0;
+            font-size: 24px;
+        }
+
+        .pw-must-match {
+            position: absolute;
+            font-size: 12px;
+            margin-left: 14px;
+            bottom: 17%;
+        }
+
+        .form-btn {
+            margin-top: 10px;
+            top: 100%;
+        }
+
+
+        .checkbox-with-text {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            mat-checkbox {
+                margin-top: 0px;
+                white-space: nowrap;
+                position: relative;
+
+                .terms {
+                    display: inline-block;
+                    color: #1C202B;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+}
