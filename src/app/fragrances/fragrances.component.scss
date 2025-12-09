@@ -1,0 +1,64 @@
+.brands-container {
+    background-color: #1C202B;
+    border-radius: 15px;
+    display: flex;
+    margin-bottom: 50px;
+    align-items: center;
+    justify-content: center;
+    transition: all .5s ease;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .brand-img {
+        max-width: 150px;
+        max-height: 150px;
+        width: auto;
+        height: auto;
+        aspect-ratio: 3/2;
+        object-fit: contain;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        filter: brightness(300%);
+
+        &:hover {
+            filter: brightness(200%);
+        }
+    }
+}
+
+.filtered-fragrances-container {
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 550px) {
+    .brands-container {
+        .brand-img {
+            display: flex;
+        }
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .brands-container {
+        border-radius: 0px;
+        transition: all .5s ease;
+    }
+}
+
+app-settings-button {
+    width: 45px;
+    display: block;
+}
+
+mat-checkbox:not(:last-child) {}
+
+.divA {
+    display: flex;
+    color: #333;
+    flex-direction: column;
+    border-radius: 0.625rem;
+    background-color: white;
+    margin: 1.25rem;
+}
+
+
+/* Product-card in style-helper/product-style.scss */

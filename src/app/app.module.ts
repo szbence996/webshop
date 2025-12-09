@@ -47,6 +47,14 @@ import { AddedToCartAlertComponent } from './added-to-cart-alert/added-to-cart-a
 import { CustomKeepButtonComponent } from './custom/custom-keep-button/custom-keep-button.component';
 import { ShoppingCartModalComponent } from './shopping-cart/shopping-cart-modal/shopping-cart-modal.component';
 import { LandingComponent } from './login-reg-landing/landing/landing.component';
+import { DiorFragrancesComponent } from './fragrances/dior-fragrances/dior-fragrances.component';
+import { JPGFragrancesComponent } from './fragrances/jpg-fragrances/jpg-fragrances.component';
+import { LancomeFragrancesComponent } from './fragrances/lancome-fragrances/lancome-fragrances.component';
+import { ManFragrancesComponent } from './fragrances/man-fragrances/man-fragrances.component';
+import { SettingsButtonComponent } from './fragrances/settings-button/settings-button.component';
+import { WomanFragrancesComponent } from './fragrances/woman-fragrances/woman-fragrances.component';
+import { ModalComponent } from './fragrances/modal-fragrance/modal.component';
+import { FragranceCarouselComponent } from './fragrances/fragrance-carousel/fragrance-carousel.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVqh08gg_Fn6aOjMmmPZbJ2AryiAxuUN4",
@@ -68,6 +76,15 @@ const firebaseConfig = {
     ProductsComponent,
     AccessoriesComponent,
     FragrancesComponent,
+    FragranceCarouselComponent,
+    ModalComponent,
+    DiorFragrancesComponent,
+    JPGFragrancesComponent,
+    LancomeFragrancesComponent,
+    WomanFragrancesComponent,
+    ManFragrancesComponent,
+    CustomButtonComponent,
+    SettingsButtonComponent,
     ShoppingCartComponent,
     ShippingComponent,
     UserComponent,

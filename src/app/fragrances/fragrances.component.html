@@ -1,1 +1,65 @@
-<p>fragrances works!</p>
+<app-skeleton-loader></app-skeleton-loader>
+
+<app-fragrance-carousel [style.display]="contentLoaded ? 'block' : 'none'" [images]="currentImages"
+    [autoSlide]="true"></app-fragrance-carousel>
+
+<app-settings-button [style.display]="contentLoaded ? 'block' : 'none'"
+    (click)="toggleShowDiv('divA')"></app-settings-button>
+<div [style.display]="contentLoaded ? 'flex' : 'none'" class="fragrance-filter-container" [@slideInOut]="animationState"
+    class="divA">
+    <mat-checkbox class="checkbox-all" [(ngModel)]="productService.isAllChecked"
+        (change)="productService.onCheckboxChange('isAllChecked')"
+        [disabled]="productService.isAllChecked === true">Mindet
+        mutat</mat-checkbox>
+
+    <mat-checkbox class="checkbox-w" [(ngModel)]="productService.isWomanChecked"
+        (change)="productService.onCheckboxChange('isWomanChecked')"
+        [disabled]="productService.isManChecked === true">Női</mat-checkbox>
+
+    <mat-checkbox class="checkbox-m" [(ngModel)]="productService.isManChecked"
+        (change)="productService.onCheckboxChange('isManChecked')"
+        [disabled]="productService.isWomanChecked === true">Férfi</mat-checkbox>
+
+    <mat-checkbox class="checkbox-b" [(ngModel)]="productService.isDiorChecked"
+        (change)="productService.onCheckboxChange('isDiorChecked')">Dior</mat-checkbox>
+
+    <mat-checkbox class="checkbox-b" [(ngModel)]="productService.isLancomeChecked"
+        (change)="productService.onCheckboxChange('isLancomeChecked')">Lancome</mat-checkbox>
+
+    <mat-checkbox class="checkbox-b" [(ngModel)]="productService.isJPGChecked"
+        (change)="productService.onCheckboxChange('isJPGChecked')">Jean
+        Paul Gaultier</mat-checkbox>
+</div>
+
+<div [style.display]="contentLoaded ? 'flex' : 'none'">
+    <div class="product-container">
+        <div class="product-card-container" style="min-height: 100vh;" *ngIf="productService.isAllChecked === true">
+            <div class="product-card" *ngFor="let item of productService.fragrances$ | async "
+                (click)="productService.openModal(item)" (mouseover)="productService.mouseOver(item)"
+                (mouseleave)="productService.mouseLeave(item)">
+                <div class="product-card-head"> {{item.brand}} <p class="brand-name">{{item.brandName}}</p>
+                    <p class="scent">{{item.scent}}</p>
+                </div>
+                <div class="main-image-container">
+                    <img class="main-image" [src]="item.imagePath">
+                </div>
+                <div class="product-card-price">{{ item.type[0].price }} <p class="tol">Ft-tól</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!productService.isAllChecked" class="filtered-fragrances-container">
+    <app-man-fragrances></app-man-fragrances>
+    <app-woman-fragrances></app-woman-fragrances>
+    <app-dior-fragrances></app-dior-fragrances>
+    <app-jpg-fragrances></app-jpg-fragrances>
+    <app-lancome-fragrances></app-lancome-fragrances>
+</div>
+<app-footer></app-footer>
+
+<app-modal [product]="productService.selectedProduct" (closeModalEvent)="productService.closeModal()"
+    *ngIf="productService.isModalOpen"></app-modal>
+<app-added-to-cart-alert [product]="productService.selectedProduct"
+    (closeAddedModalEvent)="productService.closeAddedModal()" *ngIf="services.addedToCart"></app-added-to-cart-alert>
