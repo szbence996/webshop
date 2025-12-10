@@ -1,1 +1,75 @@
-<p>accessories works!</p>
+<app-skeleton-loader></app-skeleton-loader>
+
+<div [style.display]="contentLoaded ? 'flex' : 'none'" class="img-brand-container">
+    <img class="img-brand" [src]="imgLogo" alt="">
+</div>
+<div [style.display]="contentLoaded ? 'flex' : 'none'">
+    <div class="product-container">
+        <div class="product-card-container">
+            <div class="product-card" (mouseover)="productService.mouseOver(item)"
+                (mouseleave)="productService.mouseLeave(item)" *ngFor="let item of accessories$ | async"
+                (click)="productService.openModal(item)">
+                <div class="product-card-head"> {{item.brand}} <p class="brand-name">{{item.brandName}}</p>
+                </div>
+                <div class="main-image-container">
+                    <img class="main-image" [src]="item.imagePath">
+                </div>
+                <div class="price-container">
+                    <div class="product-card-price">{{ item.type[0].price }} <p class="tol">{{textService.priceFrom}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div [style.display]="contentLoaded ? 'flex' : 'none'">
+    <div class="commercial-watch-container">
+        <img [src]="screenWidth >= 768 ? imgPc : imgMobile" alt="" [@fadeInB]="sectionInView === 'd'">
+        <div class="commercial-watch-text-container">
+            <div class="commercial-watch-text" id="d" [@fadeInA]="sectionInView === 'd'">
+                {{textService.discountAmount}}
+            </div>
+            <p id="d" [@fadeInADelayed]="sectionInView === 'd'">{{textService.discountDesc}}</p>
+        </div>
+    </div>
+</div>
+
+<div [style.display]="contentLoaded ? 'flex' : 'none'">
+    <div class="product-container">
+
+        <div class="product-card-container">
+            <div class="product-card" (mouseover)="productService.mouseOver(item)"
+                (mouseleave)="productService.mouseLeave(item)" *ngFor="let item of watches$ | async"
+                (click)="productService.openModal(item)">
+                <div class="product-card-head"> {{item.brand}} <p class="brand-name">{{item.brandName}}</p>
+                    <div *ngIf="item.type[0].discount10" class="badge">
+                        <span>{{textService.discountHeader}}</span>
+                    </div>
+                </div>
+                <div class="main-image-container">
+                    <img class="main-image" [src]="item.imagePath">
+                </div>
+                <div class="price-container">
+                    <div *ngIf="!item.type[0].discount10" class="product-card-price">{{ item.type[0].price }} <p
+                            class="tol">{{textService.price}}
+                        </p>
+                    </div>
+                    <div *ngIf="item.type[0].discount10" class="product-card-original-price">
+                        <div class="original-price">
+                            {{item.type[0].price}} <p class="original-tol">{{textService.originalPrice}}</p>
+                        </div>
+                        <div class="discount-price">
+                            {{ item.type[0].price * 0.9 }} <p class="discount-tol">{{textService.price}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<app-modal-accessories [product]="productService.selectedProduct" (closeModalEvent)="productService.closeModal()"
+    *ngIf="productService.isModalOpen"></app-modal-accessories>
+<app-added-to-cart-alert [product]="productService.selectedProduct"
+    (closeAddedModalEvent)="productService.closeAddedModal()" *ngIf="services.addedToCart"></app-added-to-cart-alert>

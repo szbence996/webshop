@@ -55,6 +55,7 @@ import { SettingsButtonComponent } from './fragrances/settings-button/settings-b
 import { WomanFragrancesComponent } from './fragrances/woman-fragrances/woman-fragrances.component';
 import { ModalComponent } from './fragrances/modal-fragrance/modal.component';
 import { FragranceCarouselComponent } from './fragrances/fragrance-carousel/fragrance-carousel.component';
+import { ModalAccessoriesComponent } from './accessories/modal-accessories/modal-accessories.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVqh08gg_Fn6aOjMmmPZbJ2AryiAxuUN4",
@@ -106,6 +107,7 @@ const firebaseConfig = {
     ShoppingCartComponent,
     ShoppingCartModalComponent,
     LandingComponent,
+    ModalAccessoriesComponent,
 
   ],
   imports: [
