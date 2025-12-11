@@ -56,6 +56,11 @@ import { WomanFragrancesComponent } from './fragrances/woman-fragrances/woman-fr
 import { ModalComponent } from './fragrances/modal-fragrance/modal.component';
 import { FragranceCarouselComponent } from './fragrances/fragrance-carousel/fragrance-carousel.component';
 import { ModalAccessoriesComponent } from './accessories/modal-accessories/modal-accessories.component';
+import { ModalDashboardComponent } from './dashboard/modal-dashboard/modal-dashboard.component';
+import { DiscountedSunglassesComponent } from './dashboard/discounted-products/discounted-sunglasses/discounted-sunglasses.component';
+import { DiscountedWatchesComponent } from './dashboard/discounted-products/discounted-watches/discounted-watches.component';
+import { CustomerRewievComponent } from './media/customer-rewiev/customer-rewiev.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVqh08gg_Fn6aOjMmmPZbJ2AryiAxuUN4",
@@ -74,6 +79,11 @@ const firebaseConfig = {
     BodyComponent,
     SidenavComponent,
     DashboardComponent,
+    ModalDashboardComponent,
+    DiscountedSunglassesComponent,
+    DiscountedWatchesComponent,
+    CustomerRewievComponent,
+    CarouselComponent,
     ProductsComponent,
     AccessoriesComponent,
     FragrancesComponent,

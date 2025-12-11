@@ -1,1 +1,83 @@
-<p>dashboard works!</p>
+<app-skeleton-loader></app-skeleton-loader>
+<app-carousel [style.display]="contentLoaded ? 'block' : 'none'" [images]="currentImages"
+    [autoSlide]="true"></app-carousel>
+<div class="dashboard-container" [style.display]="contentLoaded ? 'block' : 'none'">
+    <div class="commercial-container">
+        <!---->
+        <div class="discount-section">
+            <div class="brand-container">
+                <div class="brand-text">
+                    {{textService.ourSunglasses}}
+                </div>
+                <div class="brands">
+                    <img class="hawkers" [routerLink]="['/products']" src="./assets/images/commercial/hawkers_logo.png">
+                </div>
+            </div>
+        </div>
+        <div class="commercial-first">
+            <div class="first-text-button-container">
+                <div class="first-text" id="a" [@fadeInA]="sectionInView === 'a'">{{textService.hawkers}}</div>
+                <div class="first-text-button" id="a" [@fadeInADelayed]="sectionInView === 'a'" routerLink="/products/">
+                    {{textService.goToProducts}}</div>
+            </div>
+            <img *ngIf="screenWidth >= 768" class="commercial-img" id="a" [@fadeInB]="sectionInView === 'a'"
+                src="./assets/images/commercial/sunglasses_commercial_1.jpg" alt="" id="a">
+
+            <img *ngIf="screenWidth < 768" class="commercial-img" id="a" [@fadeInB]="sectionInView === 'a'"
+                src="./assets/images/commercial/sunglasses_commercial_mobile_ps_1.jpg">
+
+            <!-- <img *ngIf="screenWidth < 512" class="commercial-img" id="a" [@fadeInB]="sectionInView === 'a'"
+                src="./assets/images/commercial/mainpage_commercial_mobile_512.png" alt=""> -->
+        </div>
+        <div class="brand-container">
+            <div class="brand-text">
+                {{textService.discountedSunglasses}}
+            </div>
+        </div>
+        <app-discounted-sunglasses></app-discounted-sunglasses>
+        <div class="brand-container">
+            <div class="fragrances-text">
+                {{textService.ourFragrances}}
+            </div>
+            <div class="brands">
+                <img class="dior" [routerLink]="['/fragrances']" src="./assets/images/commercial/dior_logo.png">
+                <img class="jpg" [routerLink]="['/fragrances']" src="./assets/images/commercial/jpg_logo.png">
+                <img class="lancome" [routerLink]="['/fragrances']" src="./assets/images/commercial/lancome_logo.png">
+            </div>
+        </div>
+        <div class="commercial-second-container-1">
+            <div class="image-container-1">
+                <img class="commercial-second-img-1" src="./assets/images/commercial/commercial_labella_copy_1.jpg"
+                    alt="">
+                <div class="common-text-2-container">
+                    <div class="second-text-1">{{textService.labella}}
+                        <app-custom-button routerLink="/fragrances" [text]="textService.more"></app-custom-button>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container-2">
+                <img class="commercial-second-img-2" src="./assets/images/commercial/lebauraw.jpg">
+                <div class="common-text-2-container">
+                    <div class="second-text-2">{{textService.lebeau}}
+                        <app-custom-button routerLink="/fragrances" [text]="textService.more"></app-custom-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discount-section">
+            <div class="brand-container">
+                <div class="brand-text">
+                    {{textService.discountedWatches}}
+                </div>
+            </div>
+            <app-discounted-watches></app-discounted-watches>
+        </div>
+    </div>
+
+</div>
+<app-customer-rewiev></app-customer-rewiev>
+<app-modal-dashboard [product]="productService.selectedProduct" (closeModalEvent)="productService.closeModal()"
+    *ngIf="productService.isModalOpen"></app-modal-dashboard>
+<app-added-to-cart-alert [product]="productService.selectedProduct"
+    (closeAddedModalEvent)="productService.closeAddedModal()" *ngIf="services.addedToCart"></app-added-to-cart-alert>
+<app-footer></app-footer>
