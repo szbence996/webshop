@@ -14,7 +14,7 @@ export class DiscountedSunglassesComponent implements OnInit {
     public productService: ProductService,) {
   }
 
-  sunglassesDiscount$ = collectionData(query(collection(this.firestore, 'hawkers'), where('discount', '==', true)));
+  sunglassesDiscount$ = collectionData(query(collection(this.firestore, 'sunglasses'), where('discount', '==', true)));
   screenWidth: number = 0;
   contentLoaded: boolean = false;
   sectionInView: any = '';
